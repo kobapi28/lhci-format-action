@@ -1669,14 +1669,14 @@ const generateLevelColumn = (level) => {
 const generatePRComment = (obj) => {
   const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
   if (obj.length === 0) {
-    stream.write('## :tada: success!');
+    stream.write('## :tada: success!\n');
     // デプロイされるURLの書き込み
     const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
     stream.write(`${reportUrl}\n`);
     stream.end('\n')
     return;
   };
-  stream.write('## :x: failed...')
+  stream.write('## :x: failed...\n')
   // デプロイされるURLの書き込み
   const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
   stream.write(`${reportUrl}\n`);
