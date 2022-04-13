@@ -1,15 +1,15 @@
-name: lighthouse format
-description: エラー情報のjsonからmarkdownに変換する処理
+name: lhci-format-action
+description: GitHub Actions to format Lighthouse ci results for easy viewing.
 inputs:
   json-file-path:
-    description: lighthouseci実行時に生成されたファイルのパス
+    description: Path of the file generated when lhci is run
     required: true
   report-url: 
-    description: lighthouseci実行時にレポートがデプロイされるurlのファイルパス
+    description: url where the report is deployed at lhci runtime
     required: true
 outputs:
   status:
-    description: 生成できたかできなかったか
+    description: Success or Failure.
 branding:
   icon: activity
   color: gray-dark
