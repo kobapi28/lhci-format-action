@@ -1666,16 +1666,20 @@ const generateLevelColumn = (level) => {
   return level === 'error' ? `:x: ${level}` : `:warning: ${level}`
 }
 
-const generateTable = (obj) => {
+const generatePRComment = (obj) => {
   const stream = (0,fs__WEBPACK_IMPORTED_MODULE_0__.createWriteStream)('result-markdown.md');
-  // デプロイされるURLの書き込み
-  const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
-  stream.write(`${reportUrl}\n`);
-  if (obj === []) {
-    stream.write('success!');
+  if (obj.length === 0) {
+    stream.write('## :tada: success!');
+    // デプロイされるURLの書き込み
+    const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
+    stream.write(`${reportUrl}\n`);
     stream.end('\n')
     return;
   };
+  stream.write('## :x: failed...')
+  // デプロイされるURLの書き込み
+  const reportUrl = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('report-url');
+  stream.write(`${reportUrl}\n`);
   stream.write('|auditProperty|actual|expected|level|\n');
   stream.write('|---|---|---|---|\n')
   for (const o of obj) {
@@ -1688,7 +1692,7 @@ const generateTable = (obj) => {
 try {
   const filePath = (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.getInput)('json-file-path')
   const file = (0,fs__WEBPACK_IMPORTED_MODULE_0__.readFileSync)(filePath);
-  generateTable(JSON.parse(file.toString()));
+  generatePRComment(JSON.parse(file.toString()));
   (0,_actions_core__WEBPACK_IMPORTED_MODULE_1__.setOutput)('success!');
 } catch (err) {
   console.log(err);
