@@ -10,6 +10,9 @@ inputs:
 outputs:
   status:
     description: 生成できたかできなかったか
+branding:
+  icon: activity
+  color: gray-dark
 runs:
   using: node16
   main: dist/index.js
