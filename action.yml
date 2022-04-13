@@ -1,0 +1,15 @@
+name: lighthouse format
+description: エラー情報のjsonからmarkdownに変換する処理
+inputs:
+  json-file-path:
+    description: lighthouseci実行時に生成されたファイルのパス
+    required: true
+  report-url: 
+    description: lighthouseci実行時にレポートがデプロイされるurlのファイルパス
+    required: true
+outputs:
+  status:
+    description: 生成できたかできなかったか
+runs:
+  using: node16
+  main: dist/index.js
