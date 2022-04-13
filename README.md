@@ -2,9 +2,33 @@
 GitHub Actions to format Lighthouse ci results for easy viewing.
 Lighthouse ci and this action together with the action that comments on the pull request will comment on the pull request as follows.
 
-[todo Place an image]
+![image](https://user-images.githubusercontent.com/60056125/163173477-3be2f905-559a-4511-b617-a20c34e4a893.png)
 
 ## Example
+First, place the following `lighthouserc.js` in the root directory of your project.
+
+:warning:
+As of v1.3, it may only work with the following configuration.
+```js
+module.exports = {
+  ci: {
+    collect: {
+      staticDistDir: './public/'
+    },
+    upload: {
+      target: 'temporary-public-storage',
+    },
+    assert: {
+      assertions: {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.9 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.9 }]
+      }
+    }
+  },
+};
+```
 Incorporate the following code into your workflow.
 Install and run lighthouse ci. Pass the file output there and the upload url to this action. The action will output a file called `result-markdown.md`, so set it to comment that file.
 
