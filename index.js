@@ -8,14 +8,14 @@ const generateLevelColumn = (level) => {
 const generatePRComment = (obj) => {
   const stream = createWriteStream('result-markdown.md');
   if (obj.length === 0) {
-    stream.write('## :tada: success!');
+    stream.write('## :tada: success!\n');
     // デプロイされるURLの書き込み
     const reportUrl = getInput('report-url');
     stream.write(`${reportUrl}\n`);
     stream.end('\n')
     return;
   };
-  stream.write('## :x: failed...')
+  stream.write('## :x: failed...\n')
   // デプロイされるURLの書き込み
   const reportUrl = getInput('report-url');
   stream.write(`${reportUrl}\n`);
